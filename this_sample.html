@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<p>this指的是，调用函数的那个对象</p>  
+
+<a href="http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html">Javascript的this用法</a>
+<br>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this">this</a>
+
+
+</body>
+
+<script>
+
+// 0. this指的是，调用函数的那个对象
+
+//
+// 1. 作为对象方法时
+//
+console.log("---------------> test 1");
+var x = "hello China";    // 等于 window.x
+function showLog() {
+  console.log(this.x);
+}
+showLog();    // 调用showLog函数的是 window，所以console.log(this.x) --> console.log(window.x)
+
+var obj = {
+  fun: showLog,
+  x: "hello BeiJing"
+};
+obj.fun();   // 调用showLog函数的是obj，所以console.log(this.x) --> console.log(obj.x)
+
+//
+// 1. 作为构造函数时
+//
+console.log("---------------> test 2");
+function Test(){
+  this.str = "welcome";
+}
+var obj2 = new Test();
+console.log(obj2.str);
+
+//
+// 1. apply调用
+//
+console.log("---------------> test 3");
+var obj1 = {
+  fun: showLog,
+  x: "hello FuZhou"
+};
+var obj2 = {
+  fun: showLog,
+  x: "hello ShangHai"
+};
+  // apply()是函数对象的一个方法，它的作用是改变函数的调用对象，它的第一个参数就表示改变后的调用这个函数的对象。因此，this指的就是这第一个参数
+obj1.fun.apply();       // apply()的参数为空时，默认调用全局对象 (window)
+obj1.fun.apply(obj1);
+obj1.fun.apply(obj2);
+
+</script>
+
+</html>
