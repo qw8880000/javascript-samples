@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<p> 使用Blob保存文件 </p>
+
+<button onclick="saveFile('hello world !!!', 'download.txt', 'text/plain')">save as</button>
+  
+<p>参考：</p>
+<ul>
+  <li>
+  <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob">web api blob</a>
+  </li>
+  <li>
+  <a href="https://stackoverflow.com/questions/13405129/javascript-create-and-save-file">Javascript: Create and save file </a>
+  </li>
+</ul>
+
+</body>
+<script>
+function saveFile(data, filename, type) {
+  var file = new Blob([data], {type: type});
+// IE10+
+  if (window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveOrOpenBlob(file, filename);
+  }
+  else { // Others
+    var a = document.createElement("a"),
+        url = URL.createObjectURL(file);
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);  
+        }, 0); 
+  }
+}
+</script>
+</html>
