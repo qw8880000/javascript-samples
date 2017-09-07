@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+ <p>使用 FileSaver.js 库来保存文件</p>
+
+<button onclick="saveFile('hello world !!!', 'download.txt', 'text/plain')">save as</button>
+
+ <p>参考：</p>
+ <ui>
+   <li><a href="https://github.com/eligrey/FileSaver.js">FileSaver.js</a></li>
+ </ui>
+</body>
+<script xmlns="http://www.w3.org/1999/xhtml" async="" src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+<script>
+function saveFile(data, filename, type) {
+  var file = new Blob([data], {type: type});
+  saveAs(file, filename);
+}
+</script>
+</html>
