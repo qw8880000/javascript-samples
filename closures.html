@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title></title>
+</head>
+<body>
+
+<h1>闭包</h1>
+
+<p>参考：</p>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript#闭包">  闭包 </a>
+
+</body>
+<script >
+function makeAdder(a) {
+    return function(b) {
+        return a + b;
+    }
+}
+var x = makeAdder(5);
+var y = makeAdder(20);
+console.log(x(6));
+console.log(y(7));
+</script>
+</html>
